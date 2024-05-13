@@ -12,14 +12,15 @@ public class CustomeSerilization {
 		Account a = new Account();
 		
 		FileOutputStream fos = new FileOutputStream("abc.ser"); 
-	    ObjectOutputStream oos = new ObjectOutputStream(fos);
-	    oos.writeObject(a);
-	    
+	    try (ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+			oos.writeObject(a);
+		}
 	    FileInputStream fis = new FileInputStream("abc.ser");
-	    ObjectInputStream ois = new ObjectInputStream(fis);
-	    Account acc = (Account) ois.readObject();
-	    
-	    System.out.println(acc.userName +"----"+acc.pwd);
+	    try (ObjectInputStream ois = new ObjectInputStream(fis)) {
+			Account acc = (Account) ois.readObject();
+			
+			System.out.println(acc.userName +"----"+acc.pwd);
+		}
 	}
 			
 
