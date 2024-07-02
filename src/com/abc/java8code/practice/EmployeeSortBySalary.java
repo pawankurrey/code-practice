@@ -31,6 +31,9 @@ public class EmployeeSortBySalary {
 		List<Employee> ascedningList = empList.stream().sorted((o1, o2) -> (int) (o1.getSalary() - o2.getSalary())).collect(Collectors.toList());
 		System.out.println("Ascsending Order : "+ascedningList);
 		
+		empList.sort(Comparator.comparing(Employee::getName).thenComparingInt(Employee::getId));
+		empList.forEach(System.out::println);
+		
 		double secondSalr = empList.stream().map(Employee::getSalary).distinct().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
 		System.out.println(secondSalr);
 		

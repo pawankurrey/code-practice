@@ -13,8 +13,8 @@ public class FirstNonRepeated {
 	
 	public static void main(String[] args) {
 		String input = "Java articles are Awesome";
-		Character result = input.chars() // Stream of String       
-	            .mapToObj(s -> Character.toLowerCase(Character.valueOf((char) s))) // First convert to Character object and then to lowercase         
+		Character result = input.toLowerCase().chars() // Stream of String       
+	            .mapToObj(s -> (char) s) // First convert to Character object       
 	            .collect(Collectors.groupingBy(Function.identity(), LinkedHashMap::new, Collectors.counting())) //Store the chars in map with count 
 	            .entrySet()
 	            .stream()
